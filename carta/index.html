@@ -1,0 +1,261 @@
+package para.mi.princesa;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class ParaMiPrincesa extends JFrame {
+
+    JLabel mensaje;
+    JLabel contador;
+    int indice = 0;
+
+    String[] razones = {
+        "Tu sonrisa y el brillo de tus ojitos ilumina mis días<3",
+        "Tus abrazos y besitos son mi lugar favorito <3",
+        "Me encanta escucharte reír y estar a tu lado riendo juntos<3",
+        "Tus ojitos me encantan demasiado <3",
+        "Gracias por estar en mi vida y por existir <3",
+        "Eres mi paz en los días difíciles y todos los dias en general <3",
+        "Amo tu forma de ser <3",
+        "Eres mi mundo y mi todo <3",
+        "Contigo todo es más bonito y lleno de color <3",
+        "Te elegiría una y mil veces màs, en esta y en mil vidas mas<3",
+        "Amo que formes parte de mi vida",
+        "me encanta tu voz",
+        "Amo todo lo que causas en mi",
+        "Adoro lo tierna que eres",
+        "Amo lo suave de tu piel",
+        "Amoo todo de ti",
+        "Y la razon mas importante...porque eres tu.<3"
+    };
+
+    public ParaMiPrincesa() {
+
+        setTitle("Para mi Princesita de ojitos bonitos");
+        setSize(700, 750);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(null);
+
+        getContentPane().setBackground(new Color(255,192,203));
+
+        JLabel titulo = new JLabel("Para mi Princesita de ojitos bonitos ❤");
+        titulo.setFont(new Font("Serif", Font.BOLD, 28));
+        titulo.setBounds(150,20,450,40);
+        add(titulo);
+
+        JLabel foto = new JLabel();
+
+        ImageIcon imagen = new ImageIcon("C:\\Users\\sahon\\OneDrive\\Imágenes\\foto.jpg.jpeg");
+
+        Image img = imagen.getImage().getScaledInstance(
+                300,
+                400,
+                Image.SCALE_SMOOTH);
+
+        foto.setIcon(new ImageIcon(img));
+
+        foto.setBounds(190,80,300,300);
+
+        add(foto);
+
+        mensaje = new JLabel(
+                "Presiona el botón para descubrir mi corazón <3",
+                SwingConstants.CENTER);
+
+        mensaje.setBounds(50,410,580,40);
+
+        mensaje.setFont(
+                new Font("Arial",Font.BOLD,18));
+        mensaje.setForeground(new Color(220,20,60));
+
+        add(mensaje);
+
+        contador = new JLabel(
+                "Razones descubiertas: 0",
+                SwingConstants.CENTER);
+
+        contador.setBounds(220,450,250,30);
+
+        add(contador);
+
+        JButton boton =
+                new JButton("Abrir mi corazón <3");
+
+        boton.setBounds(220,500,250,50);
+
+        add(boton);
+
+        boton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(indice < razones.length){
+
+                    mensaje.setText(razones[indice]);
+
+                    contador.setText(
+                            "Razones descubiertas: "
+                            + (indice + 1));
+
+                    indice++;
+
+                }else{
+
+    int respuesta = JOptionPane.showConfirmDialog(
+            null,
+            "Mi princesa <3\n\n"
+            + "Antes de abrir el mensaje final...\n\n"
+            + "¿Quieres seguir siendo la dueña de mi corazón?<3",
+            "Pregunta importante",
+            JOptionPane.YES_NO_OPTION);
+
+    if(respuesta == JOptionPane.YES_OPTION){
+
+        JTextArea carta = new JTextArea();
+        carta.setBackground(new Color(255,228,236));
+             carta.setForeground(Color.BLACK);
+
+        carta.setText(
+
+                "PARA MI PRINCESITA DE OJITOS BONITOS<3\n\n"
+
+                + "Mi niña...\n\n"
+
+                + "Si llegaste hasta aquí,\n"
+                + "es porque ya descubriste muchas o algunas\n"
+                + "de las razones por las que te amo.\n\n"
+
+                + "Pero la verdad es que ninguna lista\n"
+                + "sería suficiente para describir todo\n"
+                + "lo que significas y siento por ti.\n\n"
+
+                + "Me encantan tus ojitos bonitos.\n"
+                + "Me encanta tu sonrisa.\n"
+                + "Me encanta tu forma de ser.\n"
+                + "Me encanta la paz que me das.\n\n"
+
+                + "Gracias por cada momento,\n"
+                + "cada beso y abrazo,\n"
+                + "cada risa,\n"
+                + "y cada recuerdo que hemos creado a lo largo del tiempo.\n\n"
+
+                + "Quiero que nunca olvides algo:\n\n"
+
+                + "Eres la mejor.\n"
+                + "Eres perfecta en todos los sentidos.\n"
+                + "Eres unica y te amo con todo mi corazon y con toda mi alma.\n\n"
+
+                + "Y para mí...\n"
+                + "siempre serás mi princesita.\n\n"
+
+                + "TE AMOOO TANTOOO <3");
+
+        carta.setFont(new Font("Serif", Font.BOLD, 22));
+        carta.setLineWrap(true);
+        carta.setWrapStyleWord(true);
+        carta.setEditable(false);
+
+        JScrollPane panel = new JScrollPane(carta);
+        panel.setPreferredSize(new Dimension(700,500));
+
+        JOptionPane.showMessageDialog(
+                null,
+                panel,
+                " Mensaje Final ",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        JOptionPane.showMessageDialog(
+                null,
+                "\n\n"
+                + "MI NIÑA\n\n"
+                + "GRACIAS POR EXISTIR\n\n"
+                + "<3",
+                "Mi Princesita",
+                JOptionPane.INFORMATION_MESSAGE);
+
+    }else{
+
+        JOptionPane.showMessageDialog(
+                null,
+                "😢 Bueno... pero mi corazón seguirá siendo tuyo <3");
+    }}
+            }
+        });
+
+        iniciarCorazones();
+    }
+
+    private void iniciarCorazones(){
+
+        Random r = new Random();
+
+        Timer timer = new Timer(600, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JLabel corazon = new JLabel("♥");
+
+                corazon.setForeground(Color.RED);
+                corazon.setFont(new Font("Arial", Font.BOLD, 24));
+
+                corazon.setBounds(
+                        r.nextInt(650),
+                        650,
+                        30,
+                        30);
+
+                add(corazon);
+
+                repaint();
+
+                Timer mover = new Timer(40, null);
+
+                mover.addActionListener(new ActionListener() {
+
+                    int y = 650;
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        y -= 4;
+
+                        corazon.setLocation(
+                                corazon.getX(),
+                                y);
+
+                        if(y < -20){
+
+                            remove(corazon);
+
+                            repaint();
+
+                            ((Timer)e.getSource()).stop();
+                        }
+                    }
+                });
+
+                mover.start();
+            }
+        });
+
+        timer.start();
+    }
+
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+
+                new ParaMiPrincesa().setVisible(true);
+
+            }
+        });
+    }
+}
